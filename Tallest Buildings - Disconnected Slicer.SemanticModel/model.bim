@@ -191,6 +191,19 @@
           }
         ],
         "lineageTag": "2ef4bc10-eae6-496c-b6a8-d4ab37384854",
+        "measures": [
+          {
+            "name": "Measure",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Building[Height m])",
+            "lineageTag": "8a91b42d-f559-4039-aad5-ed97098d6204"
+          }
+        ],
         "partitions": [
           {
             "name": "Building",
