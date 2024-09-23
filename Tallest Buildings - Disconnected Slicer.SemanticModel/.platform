@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Tallest Buildings - Disconnected Slicer"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2db3645a-9c2a-4783-b319-96deaf3a11f1"
+  }
+}

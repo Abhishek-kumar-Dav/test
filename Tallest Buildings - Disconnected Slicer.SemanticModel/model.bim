@@ -1,0 +1,667 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Building\",\"City\",\"Country\",\"Building Measures\",\"CountryPicker\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.128.1380.0 (24.04)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-GB",
+    "cultures": [
+      {
+        "name": "en-GB",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "14e9fc1d-9c62-4db9-86de-92d770681491",
+        "fromColumn": "City ID",
+        "fromTable": "Building",
+        "toColumn": "City ID",
+        "toTable": "City"
+      },
+      {
+        "name": "3a2d8e82-e720-4b8c-8a71-ac288414f2e5",
+        "fromColumn": "Country ID",
+        "fromTable": "City",
+        "toColumn": "Country ID",
+        "toTable": "Country"
+      }
+    ],
+    "sourceQueryCulture": "en-GB",
+    "tables": [
+      {
+        "name": "Building",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Building ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a6f6edee-57f3-4b32-b93f-a6756c856901",
+            "sourceColumn": "Building ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Building Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "52240277-c88f-43ed-ab86-1992682ca18e",
+            "sourceColumn": "Building Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year Opened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4d39862a-18ed-4aee-a82d-d8f7263b78c6",
+            "sourceColumn": "Year Opened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "90e7abfa-5b8f-42ff-acaf-cadd2d52bfbb",
+            "sourceColumn": "City ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Height m",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "fd30e5f7-25a0-48f4-ba5e-8152111235f1",
+            "sourceColumn": "Height m",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Floors above ground",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6950a132-05fa-4f2a-b5be-06a5cc2b931c",
+            "sourceColumn": "Floors above ground",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Floors below ground",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "af4f8a60-34dc-4d9a-ad0c-17d9d8a701ce",
+            "sourceColumn": "Floors below ground",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Coordinates",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Uncategorized",
+            "dataType": "string",
+            "lineageTag": "9e9253e2-9fff-4f0f-8936-7bdb8aca9d4d",
+            "sourceColumn": "Coordinates",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "2ef4bc10-eae6-496c-b6a8-d4ab37384854",
+        "partitions": [
+          {
+            "name": "Building",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Wise Owl\\Exercises\\DAX\\Tallest Buildings\\Tallest Buildings.xlsx\"), null, true),",
+                "    Building_Sheet = Source{[Item=\"Building\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Building_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Building ID\", Int64.Type}, {\"Building Name\", type text}, {\"Year Opened\", Int64.Type}, {\"City ID\", Int64.Type}, {\"Height m\", type number}, {\"Floors above ground\", Int64.Type}, {\"Floors below ground\", Int64.Type}, {\"Coordinates\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_2a8c9bf1-f3d9-49e1-a943-7c3b2d613967",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "d39dcf9e-9456-4ec7-bd89-6a3fd55c7b5b",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "b5d9619b-d4fb-4129-a4f2-372c57ced184",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "d025cc74-5a75-4790-9f50-1c6b591b3eb0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "c7884d60-c9b5-480a-b3a1-23129033226a",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "26146d80-9d42-4197-9d81-1f613f0e0a80",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "e6ccffa2-f7b5-4dc3-99fe-817763c168ad",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "8467a20f-0f0d-4cf3-a970-4936d535945e",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "14d67ee4-503b-4628-aa5d-6fc3b2b2ff7b",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "86e672eb-9ac5-475f-a778-d0cdd9934862",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "26e4a689-3eb4-4a1a-9a10-961a1c76eb1f",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "6d96d527-4273-49e7-a9e2-ff0ce50b608f",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "03d77c9d-86cc-4bb2-bdf7-454214c3a632"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "e1a13070-82a7-4bd5-8b5f-994362090848",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_2a8c9bf1-f3d9-49e1-a943-7c3b2d613967",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "City",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "City ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "f8205769-6b49-465a-a704-1f43853ba4cc",
+            "sourceColumn": "City ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "City",
+            "dataType": "string",
+            "lineageTag": "7398c393-dde0-4904-a3fd-e08962ce9fc0",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "eb6c5f1b-6288-41b6-828c-32f69ababf91",
+            "sourceColumn": "Country ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "9e8b1811-1958-4961-bec5-7d9d3ade740a",
+        "partitions": [
+          {
+            "name": "City",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Wise Owl\\Exercises\\DAX\\Tallest Buildings\\Tallest Buildings.xlsx\"), null, true),",
+                "    City_Sheet = Source{[Item=\"City\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(City_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"City ID\", Int64.Type}, {\"City\", type text}, {\"Country ID\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Country",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "8fa89950-48da-4468-b0f1-a0cc0c06d0b9",
+            "sourceColumn": "Country ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Country",
+            "dataType": "string",
+            "lineageTag": "269e1d11-ad12-41b5-a2f3-cf2c1866a023",
+            "sourceColumn": "Country",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "87f828b6-0335-4ff6-b1fb-a64421cd736d",
+        "partitions": [
+          {
+            "name": "Country",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Wise Owl\\Exercises\\DAX\\Tallest Buildings\\Tallest Buildings.xlsx\"), null, true),",
+                "    Country_Sheet = Source{[Item=\"Country\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Country_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Country ID\", Int64.Type}, {\"Country\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Building Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "60f74055-b7a9-4718-bb0e-bf750146a020",
+        "measures": [
+          {
+            "name": "Count of Buildings",
+            "expression": "COUNTROWS(Building)",
+            "formatString": "0",
+            "lineageTag": "bd86ee84-1b35-4ec6-9841-49133ad1a4b4"
+          },
+          {
+            "name": "Avg height",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE(Building[Height m])",
+            "lineageTag": "2594699e-275f-4a56-bc4d-e1271111d53d"
+          },
+          {
+            "name": "Avg height vs. Selected country",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Avg height]- CALCULATE([Avg height],Country[Country]=SELECTEDVALUE(CountryPicker[Country Name]))",
+            "lineageTag": "39d61bb4-fbae-4e1c-9a53-765c4163f38a"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Building Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "CountryPicker",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "affd0bba-9ee2-4d7c-9379-c685dfa65102",
+            "sourceColumn": "Country Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "aeefa472-b93c-42b8-a787-2b7891efe004",
+        "partitions": [
+          {
+            "name": "CountryPicker",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\pc\\Downloads\\qf-4116\\Country List.xlsx\"), null, true),",
+                "    CountryPicker_Table = Source{[Item=\"CountryPicker\",Kind=\"Table\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(CountryPicker_Table,{{\"Country Name\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
